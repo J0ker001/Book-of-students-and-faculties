@@ -22,6 +22,10 @@ public class Faculty {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String getColor() {
         return color;
     }

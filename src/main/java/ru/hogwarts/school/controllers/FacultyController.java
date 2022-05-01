@@ -3,19 +3,18 @@ package ru.hogwarts.school.controllers;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.hogwarts.school.model.Faculty;
-import ru.hogwarts.school.service.FacultyService;
+import ru.hogwarts.school.service.FacultyServiceImpl;
 
 import java.util.List;
-import java.util.Map;
 
 
 @RestController
 @RequestMapping("faculty")
 public class FacultyController {
 
-    private final FacultyService facultyService;
+    private final FacultyServiceImpl facultyService;
 
-    public FacultyController(FacultyService facultyService) {
+    public FacultyController(FacultyServiceImpl facultyService) {
         this.facultyService = facultyService;
     }
 
@@ -50,7 +49,7 @@ public class FacultyController {
     }
 
     @GetMapping("filter/{color}")
-    public List<Map.Entry<Long, Faculty>> filteredColor(@PathVariable String color) {
+    public List<Faculty> filteredColor(@PathVariable String color) {
         return facultyService.sortFaculties(color);
     }
 }
