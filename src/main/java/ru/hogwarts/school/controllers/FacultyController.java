@@ -12,6 +12,7 @@ import java.util.List;
 @RequestMapping("faculty")
 public class FacultyController {
 
+
     private final FacultyServiceImpl facultyService;
 
     public FacultyController(FacultyServiceImpl facultyService) {
