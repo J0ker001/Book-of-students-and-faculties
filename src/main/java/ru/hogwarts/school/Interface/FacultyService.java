@@ -12,7 +12,7 @@ public interface FacultyService {
 
     Faculty editFaculty(Long lastID, Faculty faculty);
 
-    Faculty deleteFaculty(Long id);
+    void deleteFaculty(Long id);
 
     List<Faculty> sortFaculties(String color);
 }
