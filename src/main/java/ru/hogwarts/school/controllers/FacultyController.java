@@ -53,13 +53,13 @@ public class FacultyController {
     }
 
     @GetMapping("findNAmeORColor/{name},{color}")
-    public Collection<Faculty> findByNameOrColor(@RequestParam(required = false) @PathVariable String name,
-                                                 @RequestParam(required = false) @PathVariable String color) {
+    public Collection<Faculty> findByNameOrColor(@RequestParam(required = false)  String name,
+                                                 @RequestParam(required = false)  String color) {
         return facultyService.findByNameOrColor(name, color);
     }
 
     @GetMapping("search/{name}")
-    public Collection<Student> findByName(@PathVariable String name) {
+    public Collection<Student> findByName(@RequestParam String name) {
         return facultyService.findByName(name);
     }
 }

@@ -47,18 +47,18 @@ public class StudentController {
     }
 
     @GetMapping("filter/{age}")
-    public List<Student> filteredStudent(@PathVariable Integer age) {
+    public List<Student> filteredStudent(@RequestParam Integer age) {
         return studentService.sortStudent(age);
     }
 
     @GetMapping("between/{minAge},{maxAge}")
-    public Collection<Student> findByAgeBetween(@PathVariable("minAge") Integer minAge,
-                                                @PathVariable("maxAge") Integer maxAge) {
+    public Collection<Student> findByAgeBetween(@RequestParam("minAge") Integer minAge,
+                                                @RequestParam("maxAge") Integer maxAge) {
         return studentService.findByAgeBetween(minAge, maxAge);
     }
 
     @GetMapping("facult/{name}")
-    public Student findByFaculty_Id(@PathVariable("name") String name) {
+    public Student  findByFacultyId(@RequestParam("name") String name) {
         return studentService.findByName(name);
     }
 }
