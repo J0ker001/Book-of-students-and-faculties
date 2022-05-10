@@ -5,12 +5,14 @@ import ru.hogwarts.school.Interface.StudentService;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repositories.StudentRepository;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 
 @Service("student")
 public class StudentServiceImpl implements StudentService {
+
 
     private final StudentRepository studentRepository;
 
@@ -43,4 +45,15 @@ public class StudentServiceImpl implements StudentService {
     public List<Student> sortStudent(Integer age) {
         return studentRepository.findAll().stream().filter((p) -> p.getAge() == age).collect(Collectors.toList());
     }
+
+    @Override
+    public Collection<Student> findByAgeBetween(Integer minAge, Integer maxAge) {
+        return studentRepository.findByAgeBetween(minAge, maxAge);
+    }
+
+    @Override
+    public Student findByName(String name) {
+        return studentRepository.findByName(name);
+    }
+
 }
