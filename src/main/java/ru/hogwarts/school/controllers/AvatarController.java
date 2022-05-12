@@ -18,7 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 @RestController
-@RequestMapping("avatar")
+@RequestMapping
 public class AvatarController {
 
     private final AvatarServiceImpl avatarService;
