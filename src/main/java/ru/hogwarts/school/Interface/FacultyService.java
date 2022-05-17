@@ -13,7 +13,7 @@ public interface FacultyService {
 
     Faculty findFaculty(Long id);
 
-    Faculty editFaculty(Long lastID, Faculty faculty);
+    Faculty editFaculty(Faculty faculty);
 
     void deleteFaculty(Long id);
 
