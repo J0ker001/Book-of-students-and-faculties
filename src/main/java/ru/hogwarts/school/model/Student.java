@@ -25,6 +25,21 @@ public class Student {
         this.faculty = faculty;
     }
 
+    public Student() {
+    }
+
+    public Student(Long id, String name, int age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+
+    public Student(Long id, String name, int age, Faculty faculty) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.faculty = faculty;
+    }
 
     public Long getId() {
         return id;
@@ -40,6 +55,14 @@ public class Student {
 
     public int getAge() {
         return age;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override

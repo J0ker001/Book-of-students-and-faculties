@@ -33,7 +33,7 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
-    public Faculty editFaculty(Long lastID, Faculty faculty) {
+    public Faculty editFaculty( Faculty faculty) {
         return facultyRepository.save(faculty);
     }
 

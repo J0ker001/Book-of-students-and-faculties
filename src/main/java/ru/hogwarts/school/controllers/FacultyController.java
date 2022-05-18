@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.List;
 
 @RestController
-@RequestMapping("faculty")
+@RequestMapping("/faculty")
 public class FacultyController {
 
     private final FacultyService facultyService;
@@ -20,13 +20,13 @@ public class FacultyController {
         this.facultyService = facultyService;
     }
 
-    @PostMapping
+    @PostMapping("/createNew")
     public ResponseEntity<Faculty> creatFaculty(@RequestBody Faculty faculty) {
         Faculty creatFaculty = facultyService.createFaculty(faculty);
         return ResponseEntity.ok(creatFaculty);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/find/{id}")
     public ResponseEntity<Faculty> getFaculty(@PathVariable Long id) {
         Faculty faculty = facultyService.findFaculty(id);
         if (faculty == null) {
@@ -35,13 +35,13 @@ public class FacultyController {
         return ResponseEntity.ok(faculty);
     }
 
-    @PutMapping
+    @PutMapping("/update")
     public ResponseEntity<Faculty> editFaculty(@RequestBody Faculty faculty) {
-        Faculty editFaculty = facultyService.editFaculty(faculty.getId(), faculty);
+        Faculty editFaculty = facultyService.editFaculty(faculty);
         return ResponseEntity.ok(editFaculty);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteFaculty(@PathVariable Long id) {
         facultyService.deleteFaculty(id);
         return ResponseEntity.ok().build();
@@ -52,13 +52,13 @@ public class FacultyController {
         return facultyService.sortFaculties(color);
     }
 
-    @GetMapping("findNAmeORColor/{name},{color}")
+    @GetMapping("findNAmeORColor")
     public Collection<Faculty> findByNameOrColor(@RequestParam(required = false)  String name,
                                                  @RequestParam(required = false)  String color) {
         return facultyService.findByNameOrColor(name, color);
     }
 
-    @GetMapping("search/{name}")
+    @GetMapping("search")
     public Collection<Student> findByName(@RequestParam String name) {
         return facultyService.findByName(name);
     }

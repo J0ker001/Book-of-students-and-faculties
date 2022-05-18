@@ -38,7 +38,6 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void deleteStudent(Long id) {
         studentRepository.deleteById(id);
-
     }
 
     @Override
@@ -55,5 +54,4 @@ public class StudentServiceImpl implements StudentService {
     public Student findByName(String name) {
         return studentRepository.findByName(name);
     }
-
 }
