@@ -60,4 +60,19 @@ public class StudentController {
     public Student findByFacultyId(@RequestParam("name") String name) {
         return studentService.findByName(name);
     }
+
+    @GetMapping("/amountStudents")
+    public Integer amountStudents() {
+        return studentService.amountStudents();
+    }
+
+    @GetMapping("/avgAge")
+    public Integer avgAge() {
+        return studentService.avgAge();
+    }
+
+    @GetMapping("/lastFiveStudents")
+    public Collection<Student> lastFiveStudents() {
+        return studentService.lastFiveStudents();
+    }
 }
