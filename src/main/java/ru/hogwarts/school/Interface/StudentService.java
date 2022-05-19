@@ -22,4 +22,10 @@ public interface StudentService {
     Collection<Student> findByAgeBetween(Integer a, Integer b);
 
     Student findByName(String name);
+
+    Integer amountStudents();
+
+    Integer avgAge();
+
+    Collection<Student> lastFiveStudents();
 }

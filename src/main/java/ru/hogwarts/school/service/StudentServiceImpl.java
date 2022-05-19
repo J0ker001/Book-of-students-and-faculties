@@ -54,4 +54,21 @@ public class StudentServiceImpl implements StudentService {
     public Student findByName(String name) {
         return studentRepository.findByName(name);
     }
+
+    @Override
+    public Integer amountStudents() {
+        return studentRepository.amountStudents();
+    }
+
+    @Override
+    public Integer avgAge() {
+        return studentRepository.avgAge();
+    }
+
+    @Override
+    public Collection<Student> lastFiveStudents() {
+        return studentRepository.lastFiveStudents();
+    }
 }
+
+
