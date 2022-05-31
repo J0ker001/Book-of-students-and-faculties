@@ -28,4 +28,8 @@ public interface StudentService {
     Integer avgAge();
 
     Collection<Student> lastFiveStudents();
+
+    List<String> getAllStudentStartASort();
+
+    double getAvgAgeStudents();
 }

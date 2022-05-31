@@ -3,12 +3,12 @@ package ru.hogwarts.school.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
 import ru.hogwarts.school.Interface.StudentService;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repositories.StudentRepository;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -83,6 +83,30 @@ public class StudentServiceImpl implements StudentService {
         logger.info("Вызван метод, lastFiveStudents");
         return studentRepository.lastFiveStudents();
     }
+
+
+    @Override
+    public List<String> getAllStudentStartASort() {
+        return studentRepository.findAll()
+                .stream()
+                .map(Student::getName)
+                .map(String::toUpperCase)
+                .filter(s -> s.startsWith("А"))
+                .sorted()
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    @Override
+    public double getAvgAgeStudents() {
+        return studentRepository.findAll()
+                .stream()
+                .mapToDouble(Student::getAge)
+                .average()
+                .orElseThrow(() -> new NotFoundException("Нет студентов"));
+    }
+
+
+
 }
 
 

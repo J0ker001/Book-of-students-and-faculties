@@ -3,6 +3,7 @@ package ru.hogwarts.school.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
 import ru.hogwarts.school.Interface.FacultyService;
 import ru.hogwarts.school.model.Avatar;
 import ru.hogwarts.school.model.Faculty;
@@ -11,6 +12,7 @@ import ru.hogwarts.school.repositories.FacultyRepository;
 
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -66,6 +68,15 @@ public class FacultyServiceImpl implements FacultyService {
     public Collection<Student> findByName(String name) {
         logger.info("Использован метод, findByName");
         return facultyRepository.findByName(name).getStudents();
+    }
+    @Override
+    public String longestFacultyName(){
+
+        return facultyRepository.findAll()
+                .stream()
+                .map(Faculty::getName)
+                .max( Comparator.comparing(String::length))
+                .orElseThrow(() -> new NotFoundException("нет"));
     }
 
 }
