@@ -38,7 +38,7 @@ class StudentControllerTest {
 
     @Test
     void creatStudent() {
-        Student student = new Student(null, "Test", 15);
+        Student student = new Student(null, "Test", 27);
         studentController.creatStudent(student);
         Long id = student.getId();
         ResponseEntity<Student> response =
@@ -47,41 +47,41 @@ class StudentControllerTest {
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(Objects.requireNonNull(response.getBody()).getName()).isEqualTo("Test");
         assertThat(response.getBody().getId()).isNotNull();
-        assertThat(response.getBody().getAge()).isEqualTo(15);
+        assertThat(response.getBody().getAge()).isEqualTo(27);
         studentController.deleteStudent(student.getId());
     }
 
     @Test
     void getStudent() {
-        Student student = new Student(null, "Test", 15);
+        Student student = new Student(null, "Test", 27);
         Long id = Objects.requireNonNull(studentController.creatStudent(student).getBody()).getId();
         ResponseEntity<Student> response =
                 restTemplate.getForEntity("http://localhost:" + port + "/student/{id}", Student.class, id);
         assert response != null;
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(Objects.requireNonNull(response.getBody()).getName()).isEqualTo("Test");
-        assertThat(response.getBody().getAge()).isEqualTo(15);
+        assertThat(response.getBody().getAge()).isEqualTo(27);
         studentController.deleteStudent(id);
     }
 
     @Test
     void updateStudent() {
-        Student student = new Student(null, "Test", 1);
+        Student student = new Student(null, "Test", 27);
         studentController.creatStudent(student);
         Long id = student.getId();
-        Student studentTest = new Student(id, "TestPut", 2);
+        Student studentTest = new Student(id, "TestPut", 28);
         restTemplate.put("http://localhost:" + port + "/student/update", studentTest, id);
         ResponseEntity<Student> response =
                 restTemplate.getForEntity("http://localhost:" + port + "/student/{id}", Student.class, id);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(Objects.requireNonNull(response.getBody()).getName()).isEqualTo("TestPut");
-        assertThat(response.getBody().getAge()).isEqualTo(2);
+        assertThat(response.getBody().getAge()).isEqualTo(28);
         studentController.deleteStudent(id);
     }
 
     @Test
     void deleteStudent() {
-        Student student = new Student(null, "Test", 15);
+        Student student = new Student(null, "Test", 27);
         studentController.creatStudent(student);
         Long id = Objects.requireNonNull(studentController.creatStudent(student).getBody()).getId();
         restTemplate.delete("http://localhost:" + port + "/student/delete{id}", id, Student.class);
@@ -93,7 +93,7 @@ class StudentControllerTest {
 
     @Test
     void filteredStudent() {
-        Student student = new Student(null, "Test", 15);
+        Student student = new Student(null, "Test", 27);
         Integer ageFalse = 175;
         Integer age = Objects.requireNonNull(studentController.creatStudent(student).getBody()).getAge();
         var responseFalse = studentController.filteredStudent(ageFalse);
@@ -121,7 +121,7 @@ class StudentControllerTest {
 
     @Test
     void findByFacultyId() {
-        Student student = new Student(null, "Test", 15,
+        Student student = new Student(null, "Test", 27,
                 new Faculty(3L, "Юридический", "Синий"));
         studentController.creatStudent(student);
         String name = student.getName();
