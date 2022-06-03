@@ -16,9 +16,8 @@ import java.util.stream.Collectors;
 public class StudentServiceImpl implements StudentService {
 
     Logger logger = LoggerFactory.getLogger(StudentServiceImpl.class);
-
-
     private final StudentRepository studentRepository;
+    private final Object synchr = new Object();
 
     public StudentServiceImpl(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
@@ -105,7 +104,50 @@ public class StudentServiceImpl implements StudentService {
                 .orElseThrow(() -> new NotFoundException("Нет студентов"));
     }
 
+    @Override
+    public void parallelFlow() {
 
+        List<String> names = studentRepository.findAll().stream().map(Student::getName).collect(Collectors.toList());
+
+        System.out.println(names.get(0));
+        System.out.println(names.get(1));
+
+        new Thread(() -> {
+            String threadName = Thread.currentThread().getName();
+            System.out.println(threadName);
+            System.out.println(names.get(2));
+            System.out.println(names.get(3));
+        }).start();
+
+        new Thread(() -> {
+            String threadName = Thread.currentThread().getName();
+            System.out.println(threadName);
+            System.out.println(names.get(4));
+            System.out.println(names.get(5));
+        }).start();
+    }
+
+
+    @Override
+    public void parallelFlowSynchronized() {
+
+        List<String> names = studentRepository.findAll().stream().map(Student::getName).collect(Collectors.toList());
+
+        System.out.println(names.get(0));
+        System.out.println(names.get(1));
+        new Thread(() -> {
+            synchronized (synchr) {
+                System.out.println(names.get(2));
+                System.out.println(names.get(3));
+            }
+        }).start();
+        new Thread(() -> {
+            synchronized (synchr) {
+                System.out.println(names.get(4));
+                System.out.println(names.get(5));
+            }
+        }).start();
+    }
 
 }
 

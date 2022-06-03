@@ -32,4 +32,8 @@ public interface StudentService {
     List<String> getAllStudentStartASort();
 
     double getAvgAgeStudents();
+
+     void parallelFlow();
+
+    void parallelFlowSynchronized();
 }

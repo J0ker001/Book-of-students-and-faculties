@@ -82,7 +82,18 @@ public class StudentController {
     }
 
     @GetMapping("/getAvgAgeStudents")
-    public double getAvgAgeStudents(){
-      return   studentService.getAvgAgeStudents();
+    public double getAvgAgeStudents() {
+        return studentService.getAvgAgeStudents();
+    }
+
+    @GetMapping("/parallelFlow")
+    public void parallelFlow() {
+        studentService.parallelFlow();
+    }
+
+    @GetMapping("/parallelFlowSynchronized()")
+    public void parallelFlowSynchronized() {
+        studentService.parallelFlowSynchronized();
     }
 }
+
